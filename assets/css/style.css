@@ -1,0 +1,42 @@
+
+body {
+    font-family: 'bellotaitalic', Arial, sans-serif;
+    color: black;
+
+}
+
+.jumbotron  {
+height: 450px;
+
+
+}
+
+.navbar img {
+
+    width: 200px;
+    height: auto;
+
+}
+
+.navbar-nav {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+
+footer {
+
+background-color: #15c5bd;
+bottom: 0;
+width: 100%;
+text-align: center;
+}
+
+.jumbotron {
+
+    background-color: #303030;
+    color: white;
+
+
+}
