@@ -180,7 +180,7 @@
 
 <!--Services-->
 
-
+ 
 
 <!--Contact-->
 
@@ -198,6 +198,7 @@ $action=$_REQUEST['action'];
   <input name="email" type="text" value="" size="25"/><br>
   Your Country: <br>
   <select name="country" size="1">
+    <option></option>
     <option>Belgique</option>
     <option>France</option>
     <option>Russie</option>
@@ -205,9 +206,9 @@ $action=$_REQUEST['action'];
   </select><br>
   Your message: <br>
   <textarea name="message" rows="7" cols="30"></textarea><br>
-  <input type="submit" value="Send email"/>
+  <input type="submit" value="Send email"/> <br>
 
-</form>
+
 
 <?php
 
@@ -225,13 +226,15 @@ if (($name=="")||($email=="")||($country=="")||($message==""))
 echo "Veuillez compléter tous les champs";  
 }
 else
-echo "Voici les informations rentrées:";
-print_r($name);
+
+echo "<script>alert('Coucou' + '$name' + '$email');</script>";
 
 }
 
 
 ?>
+
+</form>
 <footer>
 
 

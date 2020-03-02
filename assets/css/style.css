@@ -5,12 +5,6 @@ body {
 
 }
 
-.jumbotron  {
-height: 450px;
-
-
-}
-
 .navbar img {
 
     width: 200px;
@@ -24,16 +18,23 @@ height: 450px;
     transform: translatex(-50%);
 }
 
-.jumbotron {
-
+.jumbotron  {
+height: 450px;
     background-color: #303030;
     color: white;
 
-
 }
+
 
 form {
     text-align: center;
+}
+
+#infocontact {
+text-align: center;
+
+
+
 }
 
 footer {
