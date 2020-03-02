@@ -178,6 +178,35 @@
 
 
 
+<!--Services-->
+
+
+
+<!--Contact-->
+
+<form action ="" method="POST" enctype="multipart/form-data">
+
+  <input type ="hidden" name="action" value="submit">
+  Your Name: <br>
+  <input name="name" type="text" value="" size="25"/> <br>
+  Your Email: <br>
+  <input name="email" type="text" value="" size="25"/><br>
+  Your Country: <br>
+  <select name="country" size="1">
+    <option>Belgique</option>
+    <option>France</option>
+    <option>Russie</option>
+    <option>Suède</option>
+  </select><br>
+  Your message: <br>
+  <textarea name="message" rows="7" cols="30"></textarea><br>
+  <input type="submit" value="Send email"/>
+
+</form>
+
+<?php
+
+?>
 <footer>
 
 

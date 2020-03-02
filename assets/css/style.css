@@ -24,6 +24,17 @@ height: 450px;
     transform: translatex(-50%);
 }
 
+.jumbotron {
+
+    background-color: #303030;
+    color: white;
+
+
+}
+
+form {
+    text-align: center;
+}
 
 footer {
 
@@ -33,10 +44,4 @@ width: 100%;
 text-align: center;
 }
 
-.jumbotron {
 
-    background-color: #303030;
-    color: white;
-
-
-}
