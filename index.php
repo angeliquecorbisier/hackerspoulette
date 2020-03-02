@@ -186,8 +186,7 @@
 
 <?php
 $action=$_REQUEST['action'];
-if ($action=="")
-{
+
 ?>
 
 <form action ="" method="POST" enctype="multipart/form-data">
@@ -212,10 +211,9 @@ if ($action=="")
 
 <?php
 
-}
-else
 
 
+if (isset($_POST['name'])) {
 
 $name=$_REQUEST['name'];
 $email=$_REQUEST['email'];
@@ -230,7 +228,7 @@ else
 echo "Voici les informations rentrées:";
 print_r($name);
 
-
+}
 
 
 ?>
