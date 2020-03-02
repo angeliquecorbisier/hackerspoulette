@@ -184,6 +184,12 @@
 
 <!--Contact-->
 
+<?php
+$action=$_REQUEST['action'];
+if ($action=="")
+{
+?>
+
 <form action ="" method="POST" enctype="multipart/form-data">
 
   <input type ="hidden" name="action" value="submit">
@@ -205,6 +211,27 @@
 </form>
 
 <?php
+
+}
+else
+
+
+
+$name=$_REQUEST['name'];
+$email=$_REQUEST['email'];
+$country=$_REQUEST['country'];
+$message=$_REQUEST['message'];
+
+if (($name=="")||($email=="")||($country=="")||($message==""))
+{
+echo "Veuillez compléter tous les champs";  
+}
+else
+echo "Voici les informations rentrées:";
+print_r($name);
+
+
+
 
 ?>
 <footer>
