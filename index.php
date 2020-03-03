@@ -140,7 +140,7 @@
 <section>
     <p>Catégorie 3</p>
     <div class="container">
-        <div class="card-deck mb-3 text-center">
+        <div class="card-deck md-3 text-center">
         <div class="card mb-4 box-shadow">
             <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/a344ffd10153617ebc562d9a7aa62901/7fd5d/6526e7f1-84ba-4f2c-905b-17d3fb6e01df_copy%2Bof%2Bpi4_case_angle2.jpg" alt="Card image cap">
             <div class="card-body">
@@ -180,11 +180,9 @@
 
 <!--Services-->
 
- 
-
 <!--Contact-->
-
-<?php
+<div class="container text-center border border-dark">
+  <?php
 $action=$_REQUEST['action'];
 
 ?>
@@ -206,11 +204,14 @@ $action=$_REQUEST['action'];
   </select><br>
   Your message: <br>
   <textarea name="message" rows="7" cols="30"></textarea><br>
-  <input type="submit" value="Send email"/> <br>
+  <input class="btn btn-lg btn-primary my-3" type="submit" value="Send email"/> <br>
 
 
 
-<?php
+
+</div>
+<div class="container text-center bg-dark text-white my-3 py-2">
+  <?php
 
 $options = array(
   'name' => FILTER_SANITIZE_STRING,
@@ -220,8 +221,9 @@ $options = array(
 $result = filter_input_array(INPUT_POST, $options);
 
 if ($result != null AND $result != FALSE) {
-
-	echo "Tous les champs ont été nettoyés !";
+  echo "<p>";
+  echo "Tous les champs ont été nettoyés !";
+  echo "</p>";
 
 } else {
 
@@ -243,12 +245,14 @@ $message=$_REQUEST['message'];
 
 if (($name=="")||($email=="")||($country=="")||($message==""))
 {
-echo "Veuillez compléter tous les champs";  
+  echo "<p>";
+  echo "Veuillez compléter tous les champs !";
+  echo "</p>";
 }
 else
-
+echo "<p>";
 echo "<script>alert('Coucou' + '$name' + '$email');</script>";
-
+echo "</p>";
 }
 
 echo $result['name'];
@@ -258,6 +262,8 @@ echo $result['message'];
 
 
 ?>
+</div>
+
 
 </form>
 <footer>
