@@ -215,10 +215,62 @@
 
 <!--Contact-->
 
+<div id="Contact">
+  <div id="mail-request"></div>
+
+  <div>
+  <label>Your first name</label><span id="firstnameinfo" class="info"></span><br/>
+  <input type="text" name="firstname" id="firstname" class="infoinput"></span>
+  </div>
 
 
+  <div>
+  <label>Your last name</label><span id="lastnameinfo" class="info"></span><br/>
+  <input type="text" name="lastname" id="lastname" class="infoinput"></span>
+  </div>
 
+  <div>
+  <label>Your email</label><span id="emailinfo" class="info"></span><br/>
+  <input type="text" name="email" id="email" class="infoinput"></span>
+  </div>
 
+  <div>
+  <label>Your Country: </label><span id="countryinfo" class="info"></span><br/>
+  <select name="country" id="country" class="infoinput" size="1">
+    <option></option>
+    <option>Belgique</option>
+    <option>France</option>
+    <option>Russie</option>
+    <option>Suède</option>
+  </select><br/>
+  </div>
+
+  <div>
+  <label>Homme</label><span id="genderm" class="info"></span>
+  <input type="checkbox" name="genderm" id="genderm" class="infoinput"></span>
+  <label>Femme</label><span id="genderf" class="info"></span>
+  <input type="checkbox" name="genderf" id="genderf" class="infoinput"></span>
+  </div>
+
+  
+  <div>
+  <label>Your Subject: </label><span id="subjectinfo" class="info"></span><br/>
+  <select name="subject" id="subject" class="infoinput" size="1">
+    <option></option>
+    <option>Sujet 1</option>
+    <option>Sujet 2</option>
+    <option>Sujet 3</option>
+  </select><br/>
+  </div>
+
+  <div>
+  <label>Content</label><span id="content" class="info"></span><br/>
+  <textarea name="content" id="content" class="infoinput" cols="40" row="4"></textarea>
+  </div>
+
+<div>
+  <button name="submit" class="btnaction" onClick="sendContact();">Submit</button>
+</div>
 
 <!-- Footer -->
 
@@ -295,6 +347,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+    <script src="assets/js/script.js"></script>
+
     
 </body>
 
