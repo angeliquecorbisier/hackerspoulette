@@ -7,7 +7,7 @@ body {
 
 .navbar img {
 
-    width: 200px;
+    width: 180px;
     height: auto;
 
 }
@@ -18,10 +18,17 @@ body {
     transform: translatex(-50%);
 }
 
+.navbar-nav li {
+    font-size: 25px;
+
+}
+
 .jumbotron  {
 height: 450px;
-    background-color: #303030;
-    color: white;
+background-image: url("https://zupimages.net/up/20/10/9gmt.png");
+background-size: cover; 
+background-position: center center;
+color: white;
 
 }
 

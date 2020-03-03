@@ -48,7 +48,7 @@
 
 <div class="jumbotron text-sm-center jumbo-modif">
 
-    <h1 class="display-4">Backers Poulette</h1>
+    <h1 class="display-4">Hackers Poulet</h1>
     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
@@ -180,66 +180,49 @@
 
 <!--Services-->
 
+<main>
+        <div class="container" id="service">
+            <div class="row">
+                <div class="col-sm bg-dark text-white">
+                    <h2>Service 1</h2>
+                    <p>nous proposons...</p>
+                </div>
+                <div class="col-sm text-center">
+                    <img class="img-fluid" src="https://www.raspberrypi.org/homepage-9df4b/static/b74d537a2af374e986f6d3d8dc3640cc/7fd5d/1b7d602e46d47ed9f540f364bb3fbf1985b10164_red_white-mouse.jpg" alt="Generic placeholder image">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm text-center">
+                    <img class="img-fluid" src="https://www.raspberrypi.org/homepage-9df4b/static/1a8c2dea858d9a09b7382f569582a8c3/7fd5d/76d43bab-d6e5-479f-a31e-bea771589ed1_uk_white-.jpg" alt="Generic placeholder image">
+                </div>
+                <div class="col-sm bg-ligth text-black">
+                    <h2>Service 2</h2>
+                    <p>nous reproposons...</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm bg-dark text-white">
+                    <h2>Service 3</h2>
+                    <p>nous rereproposons...</p>
+                </div>
+                <div class="col-sm text-center">
+                    <img class="img-fluid" src="https://www.raspberrypi.org/homepage-9df4b/static/018189b96c524db50ebdd0f7210caad0/7fd5d/4b874a4fc4fa904ab20c988f9775889c278dad27_power-supply-1-1393x1080.jpg" alt="Generic placeholder image">
+                </div>
+            </div>
+    </main>
+
  
 
 <!--Contact-->
 
-<?php
-$action=$_REQUEST['action'];
-
-?>
-
-<form action ="" method="POST" enctype="multipart/form-data">
-
-  <input type ="hidden" name="action" value="submit">
-  Your Name: <br>
-  <input name="name" type="text" value="" size="25"/> <br>
-  Your Email: <br>
-  <input name="email" type="text" value="" size="25"/><br>
-  Your Country: <br>
-  <select name="country" size="1">
-    <option></option>
-    <option>Belgique</option>
-    <option>France</option>
-    <option>Russie</option>
-    <option>Suède</option>
-  </select><br>
-  Your message: <br>
-  <textarea name="message" rows="7" cols="30"></textarea><br>
-  <input type="submit" value="Send email"/> <br>
 
 
-
-<?php
-
-
-
-if (isset($_POST['name'])) {
-
-$name=$_REQUEST['name'];
-$email=$_REQUEST['email'];
-$country=$_REQUEST['country'];
-$message=$_REQUEST['message'];
-
-if (($name=="")||($email=="")||($country=="")||($message==""))
-{
-echo "Veuillez compléter tous les champs";  
-}
-else
-
-echo "<script>alert('Coucou' + '$name' + '$email');</script>";
-
-}
-
-
-?>
-
-</form>
-<footer>
 
 
 
 <!-- Footer -->
+
+<footer>
 <footer class="page-footer font-small cyan darken-3">
 
     <!-- Footer Elements -->
