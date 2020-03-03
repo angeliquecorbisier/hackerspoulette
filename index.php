@@ -185,7 +185,17 @@
   <?php
 $action=$_REQUEST['action'];
 
+<<<<<<< Updated upstream
 ?>
+=======
+<div class="container text-center border border-dark" id="Contact">
+  <div id="mail-request"></div>
+
+  <div>
+  <label>Your first name</label><span id="firstnameinfo" class="info"></span><br/>
+  <input type="text" name="firstname" id="firstname" class="infoinput"></span>
+  </div>
+>>>>>>> Stashed changes
 
 <form action ="" method="POST" enctype="multipart/form-data">
 
@@ -207,8 +217,83 @@ $action=$_REQUEST['action'];
   <input class="btn btn-lg btn-primary my-3" type="submit" value="Send email"/> <br>
 
 
+<<<<<<< Updated upstream
+=======
+  
+  <div>
+  <label>Your Subject: </label><span id="subjectinfo" class="info"></span><br/>
+  <select name="subject" id="subject" class="infoinput" size="1">
+    <option></option>
+    <option>élégie</option>
+    <option>bramement</option>
+    <option>dénonciation</option>
+  </select><br/>
+  </div>
+>>>>>>> Stashed changes
 
 
+<<<<<<< Updated upstream
+=======
+<div>
+  <button name="submit" class="btnaction btn btn-lg btn-primary my-3" onClick="sendContact();">Submit</button>
+</div>
+
+<div class="container text-center bg-dark text-white my-3 py-2">
+  <?php
+
+$options = array(
+  'firstname' => FILTER_SANITIZE_STRING,
+  'lastname' => FILTER_SANITIZE_STRING,
+  'email' => FILTER_SANITIZE_EMAIL,
+  'message' => FILTER_SANITIZE_STRING);
+
+$result = filter_input_array(INPUT_POST, $options);
+
+if ($result != null AND $result != FALSE) {
+  echo "<p>";
+  echo "Tous les champs ont été nettoyés !";
+  echo "</p>";
+
+} else {
+  echo "<p>";
+	echo "Un champ est vide ou n'est pas correct!";
+  echo "</p>";
+}
+
+foreach($options as $key => $value)
+{
+  $result[$key]=trim($result[$key]);
+}
+
+if (isset($_POST['name'])) {
+
+$firstname=$_REQUEST['firstname'];
+$lastname=$_RESQUEST['lastname'];
+$email=$_REQUEST['email'];
+$country=$_REQUEST['country'];
+$message=$_REQUEST['message'];
+
+if (($firstname=="")||($lastname=="")||($email=="")||($country=="")||($message==""))
+{
+  echo "<p>";
+  echo "Veuillez compléter tous les champs !";
+  echo "</p>";
+}
+else
+echo "<p>";
+echo "<script>alert('Coucou' + '$firstname' + '$email');</script>";
+echo "</p>";
+}
+
+echo $result['firstname'];
+echo $result['lastname'];
+echo $result['email'];
+echo $country;
+echo $result['message'];
+
+
+?>
+>>>>>>> Stashed changes
 </div>
 <div class="container text-center bg-dark text-white my-3 py-2">
   <?php
