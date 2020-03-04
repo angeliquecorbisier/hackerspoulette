@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
-</head>
+ 
+
+
+  </head>
 
 <body>
 
@@ -214,63 +217,86 @@
  
 
 <!--Contact-->
+<?php
+// define variables and set to empty values
+$nameErr = $emailErr = $genderErr = $websiteErr = "";
+$name = $email = $gender = $comment = $website = "";
 
-<div id="Contact">
-  <div id="mail-request"></div>
-
-  <div>
-  <label>Your first name</label><span id="firstnameinfo" class="info"></span><br/>
-  <input type="text" name="firstname" id="firstname" class="infoinput"></span>
-  </div>
-
-
-  <div>
-  <label>Your last name</label><span id="lastnameinfo" class="info"></span><br/>
-  <input type="text" name="lastname" id="lastname" class="infoinput"></span>
-  </div>
-
-  <div>
-  <label>Your email</label><span id="emailinfo" class="info"></span><br/>
-  <input type="text" name="email" id="email" class="infoinput"></span>
-  </div>
-
-  <div>
-  <label>Your Country: </label><span id="countryinfo" class="info"></span><br/>
-  <select name="country" id="country" class="infoinput" size="1">
-    <option></option>
-    <option>Belgique</option>
-    <option>France</option>
-    <option>Russie</option>
-    <option>Suède</option>
-  </select><br/>
-  </div>
-
-  <div>
-  <label>Homme</label><span id="genderm" class="info"></span>
-  <input type="checkbox" name="genderm" id="genderm" class="infoinput"></span>
-  <label>Femme</label><span id="genderf" class="info"></span>
-  <input type="checkbox" name="genderf" id="genderf" class="infoinput"></span>
-  </div>
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+  } else {
+    $name = test_input($_POST["name"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  }
   
-  <div>
-  <label>Your Subject: </label><span id="subjectinfo" class="info"></span><br/>
-  <select name="subject" id="subject" class="infoinput" size="1">
-    <option></option>
-    <option>Sujet 1</option>
-    <option>Sujet 2</option>
-    <option>Sujet 3</option>
-  </select><br/>
-  </div>
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  }
 
-  <div>
-  <label>Content</label><span id="content" class="info"></span><br/>
-  <textarea name="content" id="content" class="infoinput" cols="40" row="4"></textarea>
-  </div>
+  if (empty($_POST["comment"])) {
+    $comment = "";
+  } else {
+    $comment = test_input($_POST["comment"]);
+  }
 
-<div>
-  <button name="submit" class="btnaction" onClick="sendContact();">Submit</button>
-</div>
+  if (empty($_POST["gender"])) {
+    $genderErr = "Gender is required";
+  } else {
+    $gender = test_input($_POST["gender"]);
+  }
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+<h2>PHP Form Validation Example</h2>
+<p><span class="error">* required field</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  Name: <input type="text" name="name" value="<?php echo $name;?>">
+  <span class="error">* <?php echo $nameErr;?></span>
+  <br><br>
+  E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+  
+  Comment: <br><textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+  <br><br>
+  Gender:
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
+  <span class="error">* <?php echo $genderErr;?></span>
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+
+<?php
+echo "<h2>Your Input:</h2>";
+echo $name;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $website;
+echo "<br>";
+echo $comment;
+echo "<br>";
+echo $gender;
+?>
 
 <!-- Footer -->
 
@@ -349,7 +375,9 @@
     </script>
     <script src="assets/js/script.js"></script>
 
-    
+
+
 </body>
+
 
 </html>
