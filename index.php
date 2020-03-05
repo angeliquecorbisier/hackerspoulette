@@ -11,17 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
-<<<<<<< Updated upstream
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      function test()
-      {
-        $.ajax({url:""})
-      }
-  </script>
-=======
-
->>>>>>> Stashed changes
 
   </head>
 
@@ -188,11 +177,8 @@
     </div>
 </section>
 
-<<<<<<< Updated upstream
 
 
-=======
->>>>>>> Stashed changes
 <!--Services-->
 
 <main>
@@ -226,11 +212,8 @@
             </div>
     </main>
 
-<<<<<<< Updated upstream
  
 
-=======
->>>>>>> Stashed changes
 <!--Contact-->
 <?php
 
@@ -321,17 +304,6 @@ function sanitize_my_email($field) {
   }
 }
 
-<<<<<<< Updated upstream
-if(isset($_POST['submit'])){
-  $to = "rodriguezgeoffrey.becode@gmail.com"; // this is your Email address
-  $from = $_POST['email']; // this is the sender's Email address
-  $first_name = $_POST['firstname'];
-  $last_name = $_POST['lastname'];
-  $subject = "Form submission";
-  $subject2 = "Copy of your form submission";
-  $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
-  $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
-=======
 if(isset($_POST['Submit'])){
   $to = "rodriguezgeoffrey.becode@gmail.com"; // this is your Email address
   $from = $result['email']; // this is the sender's Email address
@@ -341,7 +313,6 @@ if(isset($_POST['Submit'])){
   $subject2 = "Copy of your form submission";
   $message = $firstname . " " . $lastname . " wrote the following:" . "\n\n" . $result['message'];
   $message2 = "Here is a copy of your message " . $result['firstname'] . "\n\n" . $result['message'];
->>>>>>> Stashed changes
 
   $headers = "From:" . $from;
   $headers2 = "From:" . $to;
@@ -427,11 +398,7 @@ function test_input($data) {
 
   <div class="fake"><input name="fake-field"></div>
 
-<<<<<<< Updated upstream
-  <button onclick="sendmail($result)" type="submit" name="submit" value="Submit">Submit</button>
-=======
   <input type="submit" name="submit" value="Submit">
->>>>>>> Stashed changes
 </form>
 
 <?php
