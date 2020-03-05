@@ -187,7 +187,7 @@
         <div class="container" id="service">
             <div class="row">
                 <div class="col-sm bg-dark text-white">
-                    <h2>Service 1</h2>
+                    <h2>Conseil</h2>
                     <p>nous proposons...</p>
                 </div>
                 <div class="col-sm text-center">
@@ -199,13 +199,13 @@
                     <img class="img-fluid" src="https://www.raspberrypi.org/homepage-9df4b/static/1a8c2dea858d9a09b7382f569582a8c3/7fd5d/76d43bab-d6e5-479f-a31e-bea771589ed1_uk_white-.jpg" alt="Generic placeholder image">
                 </div>
                 <div class="col-sm bg-ligth text-black">
-                    <h2>Service 2</h2>
+                    <h2>Location</h2>
                     <p>nous reproposons...</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm bg-dark text-white">
-                    <h2>Service 3</h2>
+                    <h2>Réparation</h2>
                     <p>nous rereproposons...</p>
                 </div>
                 <div class="col-sm text-center">
@@ -218,8 +218,24 @@
 
 <!--Contact-->
 <?php
-$firstnameErr = $lastnameErr = $emailErr = $genderErr = "";
-$firstname = $lastname = $email = $gender = $comment = "";
+
+$options = array(
+  'first_name' 	=> FILTER_SANITIZE_STRING,
+  'last_Name' 	=> FILTER_SANITIZE_STRING,
+  'mail' 		=> FILTER_VALIDATE_EMAIL,
+  'country' => FILTER_SANITIZE_STRING,
+  'subject' 		=> FILTER_SANITIZE_STRING,
+  'comment' 		=> FILTER_SANITIZE_STRING);
+
+$result = filter_input_array(INPUT_POST, $options);
+
+foreach($options as $key => $value) 
+{
+  $result[$key]=trim($result[$key]);
+}
+
+$firstnameErr = $lastnameErr = $emailErr = $countryErr = $genderErr = $subjectErr = $commentErr = "";
+$firstname = $lastname = $email = $country = $gender = $subject= $comment ="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["firstname"])) {
@@ -228,7 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = test_input($_POST["firstname"]);
 
     if (!preg_match("/^[a-zA-Z ]*$/",$firstname)) {
-      $firstnameErr = "Only letters and white space allowed";
+      $firstnameErr = "Only letters please";
     }
   }
 
@@ -239,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $lastname = test_input($_POST["lastname"]);
 
       if (!preg_match("/^[a-zA-Z ]*$/",$lastname)) {
-        $lastnameErr = "Only letters and white space allowed";
+        $lastnameErr = "Only letters please";
       }
     }
   
@@ -247,16 +263,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $emailErr = "Email is required";
   } else {
     $email = test_input($_POST["email"]);
-    
+
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $emailErr = "Invalid email format";
     }
   }
 
   if (empty($_POST["comment"])) {
-    $comment = "";
+    $commentErr = "Please, enter your message";
   } else {
     $comment = test_input($_POST["comment"]);
+  }
+
+
+  if (empty($_POST["country"])) {
+    $countryErr ="Country is required";
+  } else {
+    $country = test_input ($_POST["country"]);
+  }
+
+  if (empty($_POST["subject"])) {
+    $subjectErr ="Select your request";
+  }else {
+    $subject = test_input ($_POST["subject"]);
   }
 
   if (empty($_POST["gender"])) {
@@ -264,6 +293,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $gender = test_input($_POST["gender"]);
   }
+
+
+
+
 }
 }
 
@@ -276,39 +309,80 @@ function test_input($data) {
 ?>
 
 <h2>Contact form</h2>
-<p><span class="error">* required field</span></p>
+
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
 
-  Firstname: <input type="text" name="firstname" value="<?php echo $firstname;?>">
+  <label for="firstname">Firstname:</label> 
+  <input type="text" name="firstname" value="<?php echo $firstname;?>">
   <span class="error">* <?php echo $firstnameErr;?></span>
   <br><br>
 
-  Lastname: <input type="text" name="lastname" value="<?php echo $lastname;?>">
+  <label for="lastname">Lastname:</label> 
+  <input type="text" name="lastname" value="<?php echo $lastname;?>">
   <span class="error">* <?php echo $lastnameErr;?></span>
   <br><br>
 
-  E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+  <label for="email">Your email:</label> 
+  <input type="text" name="email" value="<?php echo $email;?>">
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
+
+
+  <label for="country">Your Country:</label>
+
+  <select name="country" id="country">
+    <option value="">Select</option>
+    <option name ="country" <?php if (isset($country) && $country=="pays1") echo "ok";?>value="pays1">Pays1</option>
+    <option name ="country" <?php if (isset($country) && $country=="pays2") echo "ok";?>value="pays2">Pays2</option>
+    <option name ="country" <?php if (isset($country) && $country=="pays3") echo "ok";?>value="pays3">Pays3</option>
+</select>   
+<span class="error">*<?php echo $countryErr;?></span>
+<br><br>
+
+
+  <label for="subject">Your Subject:</label>
+
+  <select name="subject" id="subject">
+    <option value="">Select</option>
+    <option name ="subject" <?php if (isset($subject) && $subject=="one") echo "ok";?>value="one">Subject 1</option>
+    <option name ="subject" <?php if (isset($subject) && $subject=="two") echo "ok";?>value="two">Subject 2</option>
+    <option name ="subject" <?php if (isset($subject) && $subject=="three") echo "ok";?>value="three">Subject 3</option>
+    <option value="other">Other</option>
+</select>
+<span class="error">*<?php echo $subjectErr;?></span>
+<br><br>
+
+
   
-  Comment: <br><textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+  <label for="comment">Comment: </label> 
+    <br><textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+    <span class="error">* <?php echo $commentErr;?></span>
+
   <br><br>
-  Gender:
+
+  <label for="gender">Gender: </label>
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
   <span class="error">* <?php echo $genderErr;?></span>
   <br><br>
+
+  <div class="fake"><input name="fake-field"></div>
+
   <input type="submit" name="submit" value="Submit">  
 </form>
 
 <?php
-echo "<h2>Your Input:</h2>";
-echo $name;
+echo "<h2>Your informations:</h2>";
+echo $firstname;
+echo "<br>";
+echo $lastname;
 echo "<br>";
 echo $email;
 echo "<br>";
-echo $website;
+echo $country;
+echo "<br>";
+echo $subject;
 echo "<br>";
 echo $comment;
 echo "<br>";
