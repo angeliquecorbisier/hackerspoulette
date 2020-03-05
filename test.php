@@ -366,18 +366,20 @@ function test_input($data) {
 
   <div class="fake"><input name="fake-field"></div>
 
+<input type="submit" class="btn btn-lg btn-primary" data-toggle="modal" name="myModal" value="modal">
+
+<!--  <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a>-->
 
 
-<?php 
+  <?php
 
+if(isset($_POST['myModal'])) {
 
-
-?>
-
-  <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a>
-
+if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
+ { ?>
+  
   <!-- modal -->
-<div id="myModal" class="modal fade">
+<div class="myModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -386,6 +388,7 @@ function test_input($data) {
             </div>
             <div class="modal-body">
                 <p>Your informations are corrects. You will receive an email soon</p>
+            </div>
              
             <div class="modal-footer">
       
@@ -394,6 +397,16 @@ function test_input($data) {
         </div>
     </div>
 </div>
+      <?php
+    }  
+}
+
+
+?>
+
+  
+
+
 </form>
 
 </div>
@@ -417,7 +430,6 @@ echo $comment;
 echo "<br>";
 echo $gender;
 ?>
-
 
 
 
