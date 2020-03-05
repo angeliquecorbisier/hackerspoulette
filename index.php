@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
-</head>
+ 
+
+
+  </head>
 
 <body>
 
@@ -211,152 +214,109 @@
             </div>
     </main>
 
+ 
+
 <!--Contact-->
+<?php
+$firstnameErr = $lastnameErr = $emailErr = $genderErr = "";
+$firstname = $lastname = $email = $gender = $comment = "";
 
-<form class="container text-center border border-dark" id="Contact">
-  <div id="mail-request"></div>
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["firstname"])) {
+    $firstnameErr = "Firstname is required";
+  } else {
+    $firstname = test_input($_POST["firstname"]);
 
-  <div>
-  <label>Your first name</label><span id="firstnameinfo" class="info"></span><br/>
-  <input type="text" name="firstname" id="firstname" class="infoinput"></span>
-  </div>
-
-  <div>
-  <label>Your last name</label><span id="lastnameinfo" class="info"></span><br/>
-  <input type="text" name="lastname" id="lastname" class="infoinput"></span>
-  </div>
-
-  <div>
-  <label>Your email</label><span id="emailinfo" class="info"></span><br/>
-  <input type="text" name="email" id="email" class="infoinput"></span>
-  </div>
-
-  <div>
-  <label>Your Country: </label><span id="countryinfo" class="info"></span><br/>
-  <select name="country" id="country" class="infoinput" size="1">
-    <option></option>
-    <option>Belgique</option>
-    <option>France</option>
-    <option>Russie</option>
-    <option>Suède</option>
-  </select><br/>
-  </div>
-
-  <div>
-  <label>Homme</label><span id="genderm" class="info"></span>
-  <input type="checkbox" name="genderm" id="genderm" class="infoinput"></span>
-  <label>Femme</label><span id="genderf" class="info"></span>
-  <input type="checkbox" name="genderf" id="genderf" class="infoinput"></span>
-  </div>
-
-  
-  <div>
-  <label>Your Subject: </label><span id="subjectinfo" class="info"></span><br/>
-  <select name="subject" id="subject" class="infoinput" size="1">
-    <option></option>
-    <option>plainte</option>
-    <option>bramement</option>
-    <option>dénonciation</option>
-  </select><br/>
-  </div>
-
-  <div>
-  <label>Content</label><span id="content" class="info"></span><br/>
-  <textarea name="content" id="content" class="infoinput" cols="40" row="4"></textarea>
-  </div>
-
-<div>
-  <button name="submit" class="btnaction btn btn-lg btn-primary my-3" onClick="sendContact();">Submit</button>
-</div>
-</form>
-
-<div class="container text-center bg-dark text-white my-3 py-2">
-  <?php
-
-$options = array(
-  'firstname' => FILTER_SANITIZE_STRING,
-  'lastname' => FILTER_SANITIZE_STRING,
-  'email' => FILTER_SANITIZE_EMAIL,
-  'message' => FILTER_SANITIZE_STRING);
-
-$result = filter_input_array(INPUT_POST, $options);
-
-if ($result != null AND $result != FALSE) {
-  echo "<p>";
-  echo "Tous les champs ont été nettoyés !";
-  echo "</p>";
-
-} else {
-  echo "<p>";
-	echo "Un champ est vide ou n'est pas correct!";
-  echo "</p>";
-}
-
-foreach($options as $key => $value)
-{
-  $result[$key]=trim($result[$key]);
-}
-
-if (isset($_POST['name'])) {
-
-$firstname=$_REQUEST['firstname'];
-$lastname=$_RESQUEST['lastname'];
-$email=$_REQUEST['email'];
-$country=$_REQUEST['country'];
-$message=$_REQUEST['message'];
-
-if (($firstname=="")||($lastname=="")||($email=="")||($country=="")||($message==""))
-{
-  echo "<p>";
-  echo "Veuillez compléter tous les champs !";
-  echo "</p>";
-}
-else
-echo "<p>";
-echo "<script>alert('Coucou' + '' + '$firstname' + '' + '$lastname');</script>";
-echo "</p>";
-}
-
-function sanitize_my_email($field) {
-    $field = filter_var($field, FILTER_SANITIZE_EMAIL);
-    if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
-        return true;
-    } else {
-        return false;
+    if (!preg_match("/^[a-zA-Z ]*$/",$firstname)) {
+      $firstnameErr = "Only letters and white space allowed";
     }
-}
-}
+  }
 
-if(isset($_POST['submit'])){
-    $to = "rodriguezgeoffrey.becode@gmail.com"; // this is your Email address
-    $from = $_POST['Hacker Poulette']; // this is the sender's Email address
-    $first_name = $_POST['firstname'];
-    $last_name = $_POST['lastname'];
-    $subject = "Form submission";
-    $subject2 = "Copy of your form submission";
-    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
-    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["lastname"])) {
+      $lastnameErr = "Lastname is required";
+    } else {
+      $lastname = test_input($_POST["lastname"]);
 
-    $headers = "From:" . $from;
-    $headers2 = "From:" . $to;
-    //check if the email address is invalid $secure_check
-    $secure_check = sanitize_my_email($to_email);
-    if ($secure_check == false) {
-        echo "Invalid input";
-    } else { //send email 
-      mail($to,$subject,$message,$headers);
-      mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
-      echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
-      // You can also use header('Location: thank_you.php'); to redirect to another page.
+      if (!preg_match("/^[a-zA-Z ]*$/",$lastname)) {
+        $lastnameErr = "Only letters and white space allowed";
       }
+    }
+  
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  }
+
+  if (empty($_POST["comment"])) {
+    $comment = "";
+  } else {
+    $comment = test_input($_POST["comment"]);
+  }
+
+  if (empty($_POST["gender"])) {
+    $genderErr = "Gender is required";
+  } else {
+    $gender = test_input($_POST["gender"]);
+  }
+}
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }
 ?>
 
-</div>
+<h2>Contact form</h2>
+<p><span class="error">* required field</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+
+  Firstname: <input type="text" name="firstname" value="<?php echo $firstname;?>">
+  <span class="error">* <?php echo $firstnameErr;?></span>
+  <br><br>
+
+  Lastname: <input type="text" name="lastname" value="<?php echo $lastname;?>">
+  <span class="error">* <?php echo $lastnameErr;?></span>
+  <br><br>
+
+  E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+  
+  Comment: <br><textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+  <br><br>
+  Gender:
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
+  <span class="error">* <?php echo $genderErr;?></span>
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+
+<?php
+echo "<h2>Your Input:</h2>";
+echo $name;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $website;
+echo "<br>";
+echo $comment;
+echo "<br>";
+echo $gender;
+?>
 
 <!-- Footer -->
 
-<footer>
 <footer class="page-footer font-small cyan darken-3">
 
     <!-- Footer Elements -->
@@ -414,10 +374,6 @@ if(isset($_POST['submit'])){
 
 
 
-</footer>
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -431,7 +387,9 @@ if(isset($_POST['submit'])){
     </script>
     <script src="assets/js/script.js"></script>
 
-    
+
+
 </body>
+
 
 </html>
