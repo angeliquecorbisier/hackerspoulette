@@ -302,14 +302,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 }
 
-function sendmail($toCheck) {
-  $to = 'rodriguezgeoffrey.becode@gmail.com';
-  $subject = $toCheck['sujet'];
-  $message = $toCheck['firstname'] + $toCheck['email'];
-  $headers = 'from: hacker poulette';
-
-  mail($to,$subject,$message,$headers);
+function sanitize_my_email($field) {
+  $field = filter_var($field, FILTER_SANITIZE_EMAIL);
+  if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
+      return true;
+  } else {
+      return false;
+  }
 }
+
+if(isset($_POST['submit'])){
+  $to = "rodriguezgeoffrey.becode@gmail.com"; // this is your Email address
+  $from = $_POST['email']; // this is the sender's Email address
+  $first_name = $_POST['firstname'];
+  $last_name = $_POST['lastname'];
+  $subject = "Form submission";
+  $subject2 = "Copy of your form submission";
+  $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
+  $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+
+  $headers = "From:" . $from;
+  $headers2 = "From:" . $to;
+  //check if the email address is invalid $secure_check
+  $secure_check = sanitize_my_email($to_email);
+  if ($secure_check == false) {
+      echo "Invalid input";
+  } else { //send email 
+    mail($to,$subject,$message,$headers);
+    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    }
+}
+
 
 function test_input($data) {
   $data = trim($data);
