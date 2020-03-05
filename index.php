@@ -228,7 +228,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = test_input($_POST["firstname"]);
 
     if (!preg_match("/^[a-zA-Z ]*$/",$firstname)) {
+      $firstname = test_input($_POST[""]);
       $firstnameErr = "Only letters please";
+      
     }
   }
 
@@ -239,6 +241,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $lastname = test_input($_POST["lastname"]);
 
       if (!preg_match("/^[a-zA-Z ]*$/",$lastname)) {
+        $lastname = test_input($_POST[""]);
         $lastnameErr = "Only letters please";
       }
     }
@@ -248,8 +251,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $email = test_input($_POST["email"]);
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {  
+      $email = test_input($_POST[""]);
       $emailErr = "Invalid email format";
+    
+
     }
   }
 
@@ -372,6 +378,29 @@ echo $comment;
 echo "<br>";
 echo $gender;
 ?>
+
+
+<?php
+
+//HONEYPOT
+
+add_filter( 'wpcf7_load_js', '__return_false' );
+add_filter( 'wpcf7_load_css', '__return_false' );
+ 
+function func1234_wpcf7_antispam_fake_input($cf7) {
+ 
+      // if you wanna check the ID of the Form $wpcf->id
+      if(isset($_POST['fake-field']) && $_POST['fake-field'] != ''){
+          wp_safe_redirect( get_bloginfo("url") . '/fake-confirmation/');
+          exit;
+      }
+  }
+ 
+// perform the check when the_posts() function is called
+add_action("wpcf7_before_send_mail", "func1234_wpcf7_antispam_fake_input");
+
+?>
+
 
 <!-- Footer -->
 
