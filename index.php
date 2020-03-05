@@ -211,11 +211,9 @@
             </div>
     </main>
 
- 
-
 <!--Contact-->
 
-<div class="container text-center border border-dark" id="Contact">
+<form class="container text-center border border-dark" id="Contact">
   <div id="mail-request"></div>
 
   <div>
@@ -270,6 +268,7 @@
 <div>
   <button name="submit" class="btnaction btn btn-lg btn-primary my-3" onClick="sendContact();">Submit</button>
 </div>
+</form>
 
 <div class="container text-center bg-dark text-white my-3 py-2">
   <?php
@@ -314,18 +313,45 @@ if (($firstname=="")||($lastname=="")||($email=="")||($country=="")||($message==
 }
 else
 echo "<p>";
-echo "<script>alert('Coucou' + '$firstname' + '$email');</script>";
+echo "<script>alert('Coucou' + '' + '$firstname' + '' + '$lastname');</script>";
 echo "</p>";
 }
 
-echo $result['firstname'];
-echo $result['lastname'];
-echo $result['email'];
-echo $country;
-echo $result['message'];
+function sanitize_my_email($field) {
+    $field = filter_var($field, FILTER_SANITIZE_EMAIL);
+    if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+}
 
+if(isset($_POST['submit'])){
+    $to = "rodriguezgeoffrey.becode@gmail.com"; // this is your Email address
+    $from = $_POST['Hacker Poulette']; // this is the sender's Email address
+    $first_name = $_POST['firstname'];
+    $last_name = $_POST['lastname'];
+    $subject = "Form submission";
+    $subject2 = "Copy of your form submission";
+    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
 
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    //check if the email address is invalid $secure_check
+    $secure_check = sanitize_my_email($to_email);
+    if ($secure_check == false) {
+        echo "Invalid input";
+    } else { //send email 
+      mail($to,$subject,$message,$headers);
+      mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+      echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+      // You can also use header('Location: thank_you.php'); to redirect to another page.
+      }
+}
 ?>
+
 </div>
 
 <!-- Footer -->
