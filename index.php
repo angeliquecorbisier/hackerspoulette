@@ -11,8 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
- 
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      function test()
+      {
+        $.ajax({url:""})
+      }
+  </script>
 
   </head>
 
@@ -220,10 +225,11 @@
 <?php
 
 $options = array(
-  'first_name' 	=> FILTER_SANITIZE_STRING,
-  'last_Name' 	=> FILTER_SANITIZE_STRING,
-  'mail' 		=> FILTER_VALIDATE_EMAIL,
-  'country' => FILTER_SANITIZE_STRING,
+  'firstname' 	=> FILTER_SANITIZE_STRING,
+  'lastname' 	=> FILTER_SANITIZE_STRING,
+  'email' 		=> FILTER_VALIDATE_EMAIL,
+  'country'  => FILTER_SANITIZE_STRING,
+  'gender'  => FILTER_SANITIZE_STRING,
   'subject' 		=> FILTER_SANITIZE_STRING,
   'comment' 		=> FILTER_SANITIZE_STRING);
 
@@ -293,11 +299,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $gender = test_input($_POST["gender"]);
   }
-
-
-
-
 }
+}
+
+function sendmail($toCheck) {
+  $to = 'rodriguezgeoffrey.becode@gmail.com';
+  $subject = $toCheck['sujet'];
+  $message = $toCheck['firstname'] + $toCheck['email'];
+  $headers = 'from: hacker poulette';
+
+  mail($to,$subject,$message,$headers);
 }
 
 function test_input($data) {
@@ -369,24 +380,24 @@ function test_input($data) {
 
   <div class="fake"><input name="fake-field"></div>
 
-  <input type="submit" name="submit" value="Submit">  
+  <button onclick="sendmail($result)" type="submit" name="submit" value="Submit">Submit</button>
 </form>
 
 <?php
 echo "<h2>Your informations:</h2>";
-echo $firstname;
+echo $result['firstname'];
 echo "<br>";
-echo $lastname;
+echo $result['lastname'];
 echo "<br>";
-echo $email;
+echo $result['email'];
 echo "<br>";
-echo $country;
+echo $result['country'];
 echo "<br>";
-echo $subject;
+echo $result['subject'];
 echo "<br>";
-echo $comment;
+echo $result['comment'];
 echo "<br>";
-echo $gender;
+echo $result['gender'];
 ?>
 
 <!-- Footer -->
