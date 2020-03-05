@@ -217,6 +217,7 @@
  
 
 <!--Contact-->
+
 <?php
 $firstnameErr = $lastnameErr = $emailErr = $countryErr = $genderErr = $subjectErr = $commentErr = "";
 $firstname = $lastname = $email = $country = $gender = $subject= $comment ="";
@@ -382,27 +383,28 @@ echo $gender;
 
 <?php
 
-//HONEYPOT
+if(isset($_POST['submit'])) {
 
-add_filter( 'wpcf7_load_js', '__return_false' );
-add_filter( 'wpcf7_load_css', '__return_false' );
- 
-function func1234_wpcf7_antispam_fake_input($cf7) {
- 
-      // if you wanna check the ID of the Form $wpcf->id
-      if(isset($_POST['fake-field']) && $_POST['fake-field'] != ''){
-          wp_safe_redirect( get_bloginfo("url") . '/fake-confirmation/');
-          exit;
-      }
-  }
- 
-// perform the check when the_posts() function is called
-add_action("wpcf7_before_send_mail", "func1234_wpcf7_antispam_fake_input");
+if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
+ {
+    $to = "angeliquecorbisier@gmail.com";
+$subject = "My subject";
+$txt = "Hello world!";
+$headers = "From: webmaster@example.com" . "\r\n" .
+"CC: somebodyelse@example.com";
+
+mail($to,$subject,$txt,$headers);
+
+echo "mail sent !";
+      
+    }  
+}
+
 
 ?>
 
-
 <!-- Footer -->
+
 
 <footer class="page-footer font-small cyan darken-3">
 
@@ -457,6 +459,7 @@ add_action("wpcf7_before_send_mail", "func1234_wpcf7_antispam_fake_input");
     <!-- Copyright -->
   
   </footer>
+
   <!-- Footer -->
 
 
