@@ -187,7 +187,7 @@
         <div class="container" id="service">
             <div class="row">
                 <div class="col-sm bg-dark text-white">
-                    <h2>Conseil</h2>
+                    <h2>Service 1</h2>
                     <p>nous proposons...</p>
                 </div>
                 <div class="col-sm text-center">
@@ -199,13 +199,13 @@
                     <img class="img-fluid" src="https://www.raspberrypi.org/homepage-9df4b/static/1a8c2dea858d9a09b7382f569582a8c3/7fd5d/76d43bab-d6e5-479f-a31e-bea771589ed1_uk_white-.jpg" alt="Generic placeholder image">
                 </div>
                 <div class="col-sm bg-ligth text-black">
-                    <h2>Location</h2>
+                    <h2>Service 2</h2>
                     <p>nous reproposons...</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm bg-dark text-white">
-                    <h2>Réparation</h2>
+                    <h2>Service 3</h2>
                     <p>nous rereproposons...</p>
                 </div>
                 <div class="col-sm text-center">
@@ -214,25 +214,11 @@
             </div>
     </main>
 
+ 
+
 <!--Contact-->
 
 <?php
-
-$options = array(
-  'firstname' 	=> FILTER_SANITIZE_STRING,
-  'lastname' 	=> FILTER_SANITIZE_STRING,
-  'email' 		=> FILTER_VALIDATE_EMAIL,
-  'country'  => FILTER_SANITIZE_STRING,
-  'gender'  => FILTER_SANITIZE_STRING,
-  'subject' 		=> FILTER_SANITIZE_STRING,
-  'comment' 		=> FILTER_SANITIZE_STRING);
-
-$result = filter_input_array(INPUT_POST, $options);
-
-foreach($options as $key => $value) 
-{
-  $result[$key]=trim($result[$key]);
-}
 $firstnameErr = $lastnameErr = $emailErr = $countryErr = $genderErr = $subjectErr = $commentErr = "";
 $firstname = $lastname = $email = $country = $gender = $subject= $comment ="";
 
@@ -298,6 +284,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $gender = test_input($_POST["gender"]);
   }
+
+
+
+
 }
 }
 
@@ -309,7 +299,13 @@ function test_input($data) {
 }
 ?>
 
-<h2>Contact form</h2>
+<h2 class="text-center">Contact form</h2>
+
+<div class= "d-flex justify-content-center align-items-center container">
+
+
+
+
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
 
@@ -333,9 +329,9 @@ function test_input($data) {
 
   <select name="country" id="country">
     <option value="">Select</option>
-    <option name ="country" <?php if (isset($country) && $country=="Belgique") echo "ok";?>value="Belgique">Belgique</option>
-    <option name ="country" <?php if (isset($country) && $country=="France") echo "ok";?>value="France">France</option>
-    <option name ="country" <?php if (isset($country) && $country=="Pays-Bas") echo "ok";?>value="Pays-Bas">Pays-Bas</option>
+    <option name ="country" <?php if (isset($country) && $country=="pays1") echo "ok";?>value="pays1">Pays1</option>
+    <option name ="country" <?php if (isset($country) && $country=="pays2") echo "ok";?>value="pays2">Pays2</option>
+    <option name ="country" <?php if (isset($country) && $country=="pays3") echo "ok";?>value="pays3">Pays3</option>
 </select>   
 <span class="error">*<?php echo $countryErr;?></span>
 <br><br>
@@ -345,9 +341,9 @@ function test_input($data) {
 
   <select name="subject" id="subject">
     <option value="">Select</option>
-    <option name ="subject" <?php if (isset($subject) && $subject=="accusation") echo "ok";?>value="accusation">accusation</option>
-    <option name ="subject" <?php if (isset($subject) && $subject=="dénonciation") echo "ok";?>value="dénonciation">dénonciation</option>
-    <option name ="subject" <?php if (isset($subject) && $subject=="récrimination") echo "ok";?>value="récrimination">récrimination</option>
+    <option name ="subject" <?php if (isset($subject) && $subject=="one") echo "ok";?>value="one">Subject 1</option>
+    <option name ="subject" <?php if (isset($subject) && $subject=="two") echo "ok";?>value="two">Subject 2</option>
+    <option name ="subject" <?php if (isset($subject) && $subject=="three") echo "ok";?>value="three">Subject 3</option>
     <option value="other">Other</option>
 </select>
 <span class="error">*<?php echo $subjectErr;?></span>
@@ -370,8 +366,53 @@ function test_input($data) {
 
   <div class="fake"><input name="fake-field"></div>
 
-  <input type="submit" name="submit" value="Submit">  
+ <input type="submit" id="myModal" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" name="myModal" value="modal"> 
+
+<!-- <a href="lala" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a> -->
+
+
+  <?php
+
+if(isset($_POST['myModal'])) {
+
+if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
+ { ?>
+  
+  <!-- modal -->
+ <div id="myModal" class="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Your informations are corrects. You will receive an email soon</p>
+            </div>
+             
+            <div class="modal-footer">
+      
+                <input type="submit" class="btn btn-primary mb-2" name="submit" value="Submit">  
+            </div>
+        </div>
+    </div>
+</div> 
+      <?php
+    }  
+}
+
+
+?>
+
+  
+
+
 </form>
+
+</div>
+</div>
+</div>
+
 
 <?php
 echo "<h2>Your informations:</h2>";
@@ -391,46 +432,30 @@ echo $gender;
 ?>
 
 
-<?php
 
-function sanitize_my_email($field) {
-  $field = filter_var($field, FILTER_SANITIZE_EMAIL);
-  if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
-      return true;
-  } else {
-      return false;
-  }
-}
+<?php
 
 if(isset($_POST['submit'])) {
 
-if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
-{
-  $to = "angeliquecorbisier@gmail.com"; // this is your Email address
-  $from = $result['email']; // this is the sender's Email address
-  $firstname = $result['firstname'];
-  $lastname = $result['lastname'];
-  $subject = "Form submission";
-  $subject2 = "Copy of your form submission";
-  $message = $firstname . " " . $lastname . " wrote the following:" . "\n\n" . $result['message'];
-  $message2 = "Here is a copy of your message " . $result['firstname'] . "\n\n" . $result['message'];
-  $headers = "From:" . $from;
-  $headers2 = "From:" . $to;
-  //check if the email address is invalid $secure_check
-  $secure_check = sanitize_my_email($to_email);
-  if ($secure_check == false) {
-      echo "Invalid input";
-  } else { //send email 
-    mail($to,$subject,$message,$headers);
-    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
-    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
-    // You can also use header('Location: thank_you.php'); to redirect to another page.
-    }
+ echo "recoucou";
+    $to = "angeliquecorbisier@gmail.com";
+$subject = "My subject";
+$txt = "Hello world! Your informations: $firstname, $lastname, $country, $subject, $comment";
+$headers = "From: webmaster@example.com" . "\r\n" .
+"CC: somebodyelse@example.com";
+
+mail($to,$subject,$txt,$headers);
+
+echo "mail sent !";
+      
     }  
-}
+
 
 
 ?>
+
+  
+
 
 <!-- Footer -->
 
