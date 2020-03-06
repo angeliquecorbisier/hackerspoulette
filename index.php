@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
+ 
+
 
   </head>
 
@@ -185,7 +187,7 @@
         <div class="container" id="service">
             <div class="row">
                 <div class="col-sm bg-dark text-white">
-                    <h2>Conseil</h2>
+                    <h2>Service 1</h2>
                     <p>nous proposons...</p>
                 </div>
                 <div class="col-sm text-center">
@@ -197,13 +199,13 @@
                     <img class="img-fluid" src="https://www.raspberrypi.org/homepage-9df4b/static/1a8c2dea858d9a09b7382f569582a8c3/7fd5d/76d43bab-d6e5-479f-a31e-bea771589ed1_uk_white-.jpg" alt="Generic placeholder image">
                 </div>
                 <div class="col-sm bg-ligth text-black">
-                    <h2>Location</h2>
+                    <h2>Service 2</h2>
                     <p>nous reproposons...</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm bg-dark text-white">
-                    <h2>Réparation</h2>
+                    <h2>Service 3</h2>
                     <p>nous rereproposons...</p>
                 </div>
                 <div class="col-sm text-center">
@@ -215,24 +217,8 @@
  
 
 <!--Contact-->
+
 <?php
-
-$options = array(
-  'firstname' 	=> FILTER_SANITIZE_STRING,
-  'lastname' 	=> FILTER_SANITIZE_STRING,
-  'email' 		=> FILTER_VALIDATE_EMAIL,
-  'country'  => FILTER_SANITIZE_STRING,
-  'gender'  => FILTER_SANITIZE_STRING,
-  'subject' 		=> FILTER_SANITIZE_STRING,
-  'comment' 		=> FILTER_SANITIZE_STRING);
-
-$result = filter_input_array(INPUT_POST, $options);
-
-foreach($options as $key => $value) 
-{
-  $result[$key]=trim($result[$key]);
-}
-
 $firstnameErr = $lastnameErr = $emailErr = $countryErr = $genderErr = $subjectErr = $commentErr = "";
 $firstname = $lastname = $email = $country = $gender = $subject= $comment ="";
 
@@ -243,7 +229,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = test_input($_POST["firstname"]);
 
     if (!preg_match("/^[a-zA-Z ]*$/",$firstname)) {
+      $firstname = test_input($_POST[""]);
       $firstnameErr = "Only letters please";
+      
     }
   }
 
@@ -254,6 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $lastname = test_input($_POST["lastname"]);
 
       if (!preg_match("/^[a-zA-Z ]*$/",$lastname)) {
+        $lastname = test_input($_POST[""]);
         $lastnameErr = "Only letters please";
       }
     }
@@ -263,8 +252,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $email = test_input($_POST["email"]);
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {  
+      $email = test_input($_POST[""]);
       $emailErr = "Invalid email format";
+    
+
     }
   }
 
@@ -292,42 +284,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $gender = test_input($_POST["gender"]);
   }
+
+
+
+
 }
 }
-
-function sanitize_my_email($field) {
-  $field = filter_var($field, FILTER_SANITIZE_EMAIL);
-  if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
-      return true;
-  } else {
-      return false;
-  }
-}
-
-if(isset($_POST['Submit'])){
-  $to = "rodriguezgeoffrey.becode@gmail.com"; // this is your Email address
-  $from = $result['email']; // this is the sender's Email address
-  $firstname = $result['firstname'];
-  $lastname = $result['lastname'];
-  $subject = "Form submission";
-  $subject2 = "Copy of your form submission";
-  $message = $firstname . " " . $lastname . " wrote the following:" . "\n\n" . $result['message'];
-  $message2 = "Here is a copy of your message " . $result['firstname'] . "\n\n" . $result['message'];
-
-  $headers = "From:" . $from;
-  $headers2 = "From:" . $to;
-  //check if the email address is invalid $secure_check
-  $secure_check = sanitize_my_email($to_email);
-  if ($secure_check == false) {
-      echo "Invalid input";
-  } else { //send email 
-    mail($to,$subject,$message,$headers);
-    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
-    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
-    // You can also use header('Location: thank_you.php'); to redirect to another page.
-    }
-}
-
 
 function test_input($data) {
   $data = trim($data);
@@ -398,27 +360,51 @@ function test_input($data) {
 
   <div class="fake"><input name="fake-field"></div>
 
-  <input type="submit" name="submit" value="Submit">
+  <input type="submit" name="submit" value="Submit">  
 </form>
 
 <?php
 echo "<h2>Your informations:</h2>";
-echo $result['firstname'];
+echo $firstname;
 echo "<br>";
-echo $result['lastname'];
+echo $lastname;
 echo "<br>";
-echo $result['email'];
+echo $email;
 echo "<br>";
-echo $result['country'];
+echo $country;
 echo "<br>";
-echo $result['subject'];
+echo $subject;
 echo "<br>";
-echo $result['comment'];
+echo $comment;
 echo "<br>";
-echo $result['gender'];
+echo $gender;
+?>
+
+
+<?php
+
+if(isset($_POST['submit'])) {
+
+if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
+ {
+    $to = "angeliquecorbisier@gmail.com";
+$subject = "My subject";
+$txt = "Hello world!";
+$headers = "From: webmaster@example.com" . "\r\n" .
+"CC: somebodyelse@example.com";
+
+mail($to,$subject,$txt,$headers);
+
+echo "mail sent !";
+      
+    }  
+}
+
+
 ?>
 
 <!-- Footer -->
+
 
 <footer class="page-footer font-small cyan darken-3">
 
@@ -473,6 +459,7 @@ echo $result['gender'];
     <!-- Copyright -->
   
   </footer>
+
   <!-- Footer -->
 
 
