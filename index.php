@@ -366,18 +366,20 @@ function test_input($data) {
 
   <div class="fake"><input name="fake-field"></div>
 
+ <input type="submit" id="myModal" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" name="myModal" value="modal"> 
+
+<!-- <a href="lala" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a> -->
 
 
-<?php 
+  <?php
 
+if(isset($_POST['myModal'])) {
 
-
-?>
-
-  <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a>
-
+if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
+ { ?>
+  
   <!-- modal -->
-<div id="myModal" class="modal fade">
+ <div id="myModal" class="myModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -386,6 +388,7 @@ function test_input($data) {
             </div>
             <div class="modal-body">
                 <p>Your informations are corrects. You will receive an email soon</p>
+            </div>
              
             <div class="modal-footer">
       
@@ -393,7 +396,17 @@ function test_input($data) {
             </div>
         </div>
     </div>
-</div>
+</div> 
+      <?php
+    }  
+}
+
+
+?>
+
+  
+
+
 </form>
 
 </div>
@@ -420,13 +433,11 @@ echo $gender;
 
 
 
-
 <?php
 
 if(isset($_POST['submit'])) {
 
-if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
- {
+ echo "recoucou";
     $to = "angeliquecorbisier@gmail.com";
 $subject = "My subject";
 $txt = "Hello world! Your informations: $firstname, $lastname, $country, $subject, $comment";
@@ -438,7 +449,7 @@ mail($to,$subject,$txt,$headers);
 echo "mail sent !";
       
     }  
-}
+
 
 
 ?>
