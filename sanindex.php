@@ -10,8 +10,8 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
-    <link rel="stylesheet" href="style.css?v=3">
- 
+     <link rel="stylesheet" href="assets/css/style.css?v=3">
+
 
 
   </head>
@@ -219,8 +219,28 @@
 <!--Contact-->
 
 <?php
+
+
+
 $firstnameErr = $lastnameErr = $emailErr = $countryErr = $genderErr = $subjectErr = $commentErr = "";
 $firstname = $lastname = $email = $country = $gender = $subject= $comment ="";
+
+$options = array(
+    'firstname' 	=> FILTER_SANITIZE_STRING,
+    'lastname' 	=> FILTER_SANITIZE_STRING,
+    'email' 		=> FILTER_VALIDATE_EMAIL,
+    'country'  => FILTER_SANITIZE_STRING,
+    'gender'  => FILTER_SANITIZE_STRING,
+    'subject' 		=> FILTER_SANITIZE_STRING,
+    'comment' 		=> FILTER_SANITIZE_STRING);
+  
+  $result = filter_input_array(INPUT_POST, $options);
+  print_r($result);
+  foreach($options as $key => $value) 
+  {
+    $result[$key]=trim($result[$key]);
+  }
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["firstname"])) {
@@ -434,6 +454,16 @@ echo $gender;
 
 <?php
 
+
+function sanitize_my_email($field) {
+    $field = filter_var($field, FILTER_SANITIZE_EMAIL);
+    if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    } else {
+        return false;
+    }
+  }
+
 if(isset($_POST['submit'])) {
 
  echo "recoucou";
@@ -446,6 +476,19 @@ $headers = "From: webmaster@example.com" . "\r\n" .
 mail($to,$subject,$txt,$headers);
 
 echo "mail sent !";
+
+
+//check if the email address is invalid $secure_check
+$secure_check = sanitize_my_email($to_email);
+if ($secure_check == false) {
+    echo "Invalid input";
+} else { //send email 
+  mail($to,$subject,$message,$headers);
+  mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+  echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+  // You can also use header('Location: thank_you.php'); to redirect to another page.
+  }
+
       
     }  
 
