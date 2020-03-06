@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr-BE">
 
 <head>
     <meta charset='utf-8'>
@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
- 
-
 
   </head>
 
@@ -31,13 +29,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#" alt="acceuil">Accueil <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#products">Produits</a>
+              <a class="nav-link" href="#products" alt="product">Produits</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
+              <a class="nav-link" href="#" alt="services" >Services</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
@@ -69,7 +67,7 @@
     <div class="container">
         <div class="card-deck mb-3 text-center">
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/a344ffd10153617ebc562d9a7aa62901/7fd5d/6526e7f1-84ba-4f2c-905b-17d3fb6e01df_copy%2Bof%2Bpi4_case_angle2.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/a344ffd10153617ebc562d9a7aa62901/7fd5d/6526e7f1-84ba-4f2c-905b-17d3fb6e01df_copy%2Bof%2Bpi4_case_angle2.jpg" alt="Rasperry Pi 4 Case">
             <div class="card-body">
             <h5 class="card-title">Rasperry Pi 4 Case</h5>
             <p class="card-text">The official case for Rasperry PI 4</p>
@@ -79,7 +77,7 @@
             </div>
         </div>
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/8875c8b45499606103f45bb94a9d1902/7fd5d/94e326f3-1b92-450c-9fd5-23183797d30c_desktop%2Bkit%2Bcontents.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/8875c8b45499606103f45bb94a9d1902/7fd5d/94e326f3-1b92-450c-9fd5-23183797d30c_desktop%2Bkit%2Bcontents.jpg" alt="Rasperry Pi 4 desktop Kit">
             <div class="card-body">
             <h5 class="card-title">Rasperry Pi 4 desktop Kit</h5>
             <p class="card-text">Full desktop computer kit. Just connect to HDMI display(s)</p>
@@ -89,7 +87,7 @@
             </div>
         </div>
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/f1682eef7da7e8d989662d147f48977c/7fd5d/f532739a-171e-4aa0-b9f3-d05e20710b69_raspberry-pi-4-model-b.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/f1682eef7da7e8d989662d147f48977c/7fd5d/f532739a-171e-4aa0-b9f3-d05e20710b69_raspberry-pi-4-model-b.jpg" alt="Rasperry PI 4 model B">
             <div class="card-body">
             <h5 class="card-title">Rasperry PI 4 model B</h5>
             <p class="card-text">Your tiny, dual-display, desktop&nbsp;computer
@@ -107,7 +105,7 @@
     <div class="container">
         <div class="card-deck mb-3 text-center">
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/a344ffd10153617ebc562d9a7aa62901/7fd5d/6526e7f1-84ba-4f2c-905b-17d3fb6e01df_copy%2Bof%2Bpi4_case_angle2.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/a344ffd10153617ebc562d9a7aa62901/7fd5d/6526e7f1-84ba-4f2c-905b-17d3fb6e01df_copy%2Bof%2Bpi4_case_angle2.jpg" alt="Rasperry Pi 4 Case">
             <div class="card-body">
             <h5 class="card-title">Rasperry Pi 4 Case</h5>
             <p class="card-text">The official case for Rasperry PI 4</p>
@@ -117,7 +115,7 @@
             </div>
         </div>
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/8875c8b45499606103f45bb94a9d1902/7fd5d/94e326f3-1b92-450c-9fd5-23183797d30c_desktop%2Bkit%2Bcontents.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/8875c8b45499606103f45bb94a9d1902/7fd5d/94e326f3-1b92-450c-9fd5-23183797d30c_desktop%2Bkit%2Bcontents.jpg" alt="Rasperry Pi 4 desktop Kit">
             <div class="card-body">
             <h5 class="card-title">Rasperry Pi 4 desktop Kit</h5>
             <p class="card-text">Full desktop computer kit. Just connect to HDMI display(s)</p>
@@ -127,7 +125,7 @@
             </div>
         </div>
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/f1682eef7da7e8d989662d147f48977c/7fd5d/f532739a-171e-4aa0-b9f3-d05e20710b69_raspberry-pi-4-model-b.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/f1682eef7da7e8d989662d147f48977c/7fd5d/f532739a-171e-4aa0-b9f3-d05e20710b69_raspberry-pi-4-model-b.jpg" alt="Rasperry PI 4 model B">
             <div class="card-body">
             <h5 class="card-title">Rasperry PI 4 model B</h5>
             <p class="card-text">Your tiny, dual-display, desktop&nbsp;computer
@@ -145,7 +143,7 @@
     <div class="container">
         <div class="card-deck mb-3 text-center">
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/a344ffd10153617ebc562d9a7aa62901/7fd5d/6526e7f1-84ba-4f2c-905b-17d3fb6e01df_copy%2Bof%2Bpi4_case_angle2.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/a344ffd10153617ebc562d9a7aa62901/7fd5d/6526e7f1-84ba-4f2c-905b-17d3fb6e01df_copy%2Bof%2Bpi4_case_angle2.jpg" alt="Rasperry Pi 4 Case">
             <div class="card-body">
             <h5 class="card-title">Rasperry Pi 4 Case</h5>
             <p class="card-text">The official case for Rasperry PI 4</p>
@@ -155,7 +153,7 @@
             </div>
         </div>
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/8875c8b45499606103f45bb94a9d1902/7fd5d/94e326f3-1b92-450c-9fd5-23183797d30c_desktop%2Bkit%2Bcontents.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/8875c8b45499606103f45bb94a9d1902/7fd5d/94e326f3-1b92-450c-9fd5-23183797d30c_desktop%2Bkit%2Bcontents.jpg" alt="Rasperry Pi 4 desktop Kit">
             <div class="card-body">
             <h5 class="card-title">Rasperry Pi 4 desktop Kit</h5>
             <p class="card-text">Full desktop computer kit. Just connect to HDMI display(s)</p>
@@ -165,7 +163,7 @@
             </div>
         </div>
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/f1682eef7da7e8d989662d147f48977c/7fd5d/f532739a-171e-4aa0-b9f3-d05e20710b69_raspberry-pi-4-model-b.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://www.raspberrypi.org/homepage-9df4b/static/f1682eef7da7e8d989662d147f48977c/7fd5d/f532739a-171e-4aa0-b9f3-d05e20710b69_raspberry-pi-4-model-b.jpg" alt="Rasperry PI 4 model B">
             <div class="card-body">
             <h5 class="card-title">Rasperry PI 4 model B</h5>
             <p class="card-text">Your tiny, dual-display, desktop&nbsp;computer
@@ -318,24 +316,24 @@ function test_input($data) {
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
 
   <label for="firstname">Firstname:</label> 
-  <input type="text" name="firstname" value="<?php echo $firstname;?>">
+  <input tabindex="f" type="text" name="firstname" value="<?php echo $firstname;?>">
   <span class="error">* <?php echo $firstnameErr;?></span>
   <br><br>
 
   <label for="lastname">Lastname:</label> 
-  <input type="text" name="lastname" value="<?php echo $lastname;?>">
+  <input tabindex="l" type="text" name="lastname" value="<?php echo $lastname;?>">
   <span class="error">* <?php echo $lastnameErr;?></span>
   <br><br>
 
   <label for="email">Your email:</label> 
-  <input type="text" name="email" value="<?php echo $email;?>">
+  <input tabindex="e" type="text" name="email" value="<?php echo $email;?>">
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
 
 
   <label for="country">Your Country:</label>
 
-  <select name="country" id="country">
+  <select tabindex="c" name="country" id="country">
     <option value="">Select</option>
     <option name ="country" <?php if (isset($country) && $country=="pays1") echo "ok";?>value="pays1">Pays1</option>
     <option name ="country" <?php if (isset($country) && $country=="pays2") echo "ok";?>value="pays2">Pays2</option>
@@ -347,7 +345,7 @@ function test_input($data) {
 
   <label for="subject">Your Subject:</label>
 
-  <select name="subject" id="subject">
+  <select tabindex="s" name="subject" id="subject">
     <option value="">Select</option>
     <option name ="subject" <?php if (isset($subject) && $subject=="one") echo "ok";?>value="one">Subject 1</option>
     <option name ="subject" <?php if (isset($subject) && $subject=="two") echo "ok";?>value="two">Subject 2</option>
@@ -360,12 +358,12 @@ function test_input($data) {
 
   
   <label for="comment">Comment: </label> 
-    <br><textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+    <br><textarea tabindex="m" name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
     <span class="error">* <?php echo $commentErr;?></span>
 
   <br><br>
 
-  <label for="gender">Gender: </label>
+  <label tabindex="g" for="gender">Gender: </label>
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
@@ -374,7 +372,7 @@ function test_input($data) {
 
   <div class="fake"><input name="fake-field"></div>
 
-  <input type="submit" name="submit" value="Submit">  
+  <input tabindex="a" type="submit" name="submit" value="Submit">  
 </form>
 
 <?php
