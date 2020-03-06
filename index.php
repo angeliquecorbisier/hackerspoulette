@@ -416,8 +416,8 @@ if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryE
   $lastname = $result['lastname'];
   $subject = "Form submission";
   $subject2 = "Copy of your form submission";
-  $message = $firstname . " " . $lastname . " wrote the following:" . "\n\n" . $result['message'];
-  $message2 = "Here is a copy of your message " . $result['firstname'] . "\n\n" . $result['message'];
+  $message = $result['firstname'] . " " . $result['lastname'] . " wrote the following:" . "\n\n" . $result['comment'];
+  $message2 = "Here is a copy of your message " . $result['firstname'] . "\n\n" . $result['subject'];
 
   $headers = "From:" . $from;
   $headers2 = "From:" . $to;
