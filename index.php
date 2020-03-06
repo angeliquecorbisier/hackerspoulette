@@ -387,7 +387,7 @@ if(isset($_POST['submit'])) {
 
 if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
  {
-    $to = "angeliquecorbisier@gmail.com";
+    $to = "rodriguezgeoffrey.becode@gmail.com";
 $subject = "My subject";
 $txt = "Hello world!";
 $headers = "From: webmaster@example.com" . "\r\n" .
