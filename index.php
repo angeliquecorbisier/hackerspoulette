@@ -219,6 +219,23 @@
 <!--Contact-->
 
 <?php
+
+$options = array(
+  'firstname' 	=> FILTER_SANITIZE_STRING,
+  'lastname' 	=> FILTER_SANITIZE_STRING,
+  'email' 		=> FILTER_VALIDATE_EMAIL,
+  'country'  => FILTER_SANITIZE_STRING,
+  'gender'  => FILTER_DEFAULT,
+  'subject' 		=> FILTER_SANITIZE_STRING,
+  'comment' 		=> FILTER_SANITIZE_STRING);
+
+$result = filter_input_array(INPUT_POST, $options);
+
+foreach($options as $key => $value) 
+{
+  $result[$key]=trim($result[$key]);
+}
+
 $firstnameErr = $lastnameErr = $emailErr = $countryErr = $genderErr = $subjectErr = $commentErr = "";
 $firstname = $lastname = $email = $country = $gender = $subject= $comment ="";
 
@@ -284,9 +301,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $gender = test_input($_POST["gender"]);
   }
-
-
-
 
 }
 }
@@ -383,21 +397,41 @@ echo $gender;
 
 <?php
 
+function sanitize_my_email($field) {
+  $field = filter_var($field, FILTER_SANITIZE_EMAIL);
+  if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
+      return true;
+  } else {
+      return false;
+  }
+}
+
 if(isset($_POST['submit'])) {
 
 if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
- {
-    $to = "rodriguezgeoffrey.becode@gmail.com";
-$subject = "My subject";
-$txt = "Hello world!";
-$headers = "From: webmaster@example.com" . "\r\n" .
-"CC: somebodyelse@example.com";
+{
+  $to = "rodriguezgeoffrey.becode@gmail.com"; // this is your Email address
+  $from = $result['email']; // this is the sender's Email address
+  $firstname = $result['firstname'];
+  $lastname = $result['lastname'];
+  $subject = "Form submission";
+  $subject2 = "Copy of your form submission";
+  $message = $firstname . " " . $lastname . " wrote the following:" . "\n\n" . $result['message'];
+  $message2 = "Here is a copy of your message " . $result['firstname'] . "\n\n" . $result['message'];
 
-mail($to,$subject,$txt,$headers);
-
-echo "mail sent !";
-      
-    }  
+  $headers = "From:" . $from;
+  $headers2 = "From:" . $to;
+  //check if the email address is invalid $secure_check
+  $secure_check = sanitize_my_email($result['email']);
+  if ($secure_check == false) {
+      echo "Invalid input";
+  } else { //send email 
+    mail($to,$subject,$message,$headers);
+    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    }
+  }
 }
 
 
