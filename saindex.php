@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
-    <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
-     <link rel="stylesheet" href="assets/css/style.css?v=1">
+    <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web%20fonts/bellota_italic_macroman/stylesheet.css" type="text/css"/>
+    <link rel="stylesheet" href="assets/css/style.css?v=1">
 
 
 
@@ -250,9 +250,9 @@
 
   <select tabindex="4" name="country" id="country">
     <option value="">Select</option>
-    <option name ="country" value="pays1">Pays1</option>
-    <option name ="country" value="pays2">Pays2</option>
-    <option name ="country" value="pays3">Pays3</option>
+    <option value="pays1">Pays1</option>
+    <option value="pays2">Pays2</option>
+    <option value="pays3">Pays3</option>
 </select>   
 <span class="error">*</span>
 <br><br>
@@ -262,9 +262,9 @@
 
   <select tabindex="5" name="subject" id="subject">
     <option value="">Select</option>
-    <option name ="subject" value="one">Subject 1</option>
-    <option name ="subject" value="two">Subject 2</option>
-    <option name ="subject" value="three">Subject 3</option>
+    <option value="one">Subject 1</option>
+    <option value="two">Subject 2</option>
+    <option value="three">Subject 3</option>
     <option value="other">Other</option>
 </select>
 <span class="error">*</span>
@@ -278,7 +278,7 @@
 
     <br><br>
 
-  <label tabindex="7" for="gender">Gender: </label>
+  <label tabindex="7" id="gender">Gender: </label>
   <input id="female" type="radio" name="gender"  value="female">
   <label for="female">Female</label>
   <input id="male" type="radio" name="gender"  value="male">
