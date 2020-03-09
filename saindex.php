@@ -218,7 +218,106 @@
  
 
 <!--Contact-->
+<?php
 
+
+
+$firstnameErr = $lastnameErr = $emailErr = $countryErr = $genderErr = $subjectErr = $commentErr = "";
+$firstname = $lastname = $email = $country = $gender = $subject= $comment ="";
+
+$options = array(
+    'firstname' 	=> FILTER_SANITIZE_STRING,
+    'lastname' 	=> FILTER_SANITIZE_STRING,
+    'email' 		=> FILTER_VALIDATE_EMAIL,
+    'country'  => FILTER_SANITIZE_STRING,
+    'gender'  => FILTER_SANITIZE_STRING,
+    'subject' 		=> FILTER_SANITIZE_STRING,
+    'comment' 		=> FILTER_SANITIZE_STRING);
+  
+  $result = filter_input_array(INPUT_POST, $options);
+  print_r($result);
+  foreach($options as $key => $value) 
+  {
+    $result[$key]=trim($result[$key]);
+  }
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["firstname"])) {
+    $firstnameErr = "Firstname is required";
+  } else {
+    $firstname = test_input($_POST["firstname"]);
+
+    if (!preg_match("/^[a-zA-Z ]*$/",$firstname)) {
+      $firstname = test_input($_POST[""]);
+      $firstnameErr = "Only letters please";
+      
+    }
+  }
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["lastname"])) {
+      $lastnameErr = "Lastname is required";
+    } else {
+      $lastname = test_input($_POST["lastname"]);
+
+      if (!preg_match("/^[a-zA-Z ]*$/",$lastname)) {
+        $lastname = test_input($_POST[""]);
+        $lastnameErr = "Only letters please";
+      }
+    }
+  
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {  
+      $email = test_input($_POST[""]);
+      $emailErr = "Invalid email format";
+    
+
+    }
+  }
+
+  if (empty($_POST["comment"])) {
+    $commentErr = "Please, enter your message";
+  } else {
+    $comment = test_input($_POST["comment"]);
+  }
+
+
+  if (empty($_POST["country"])) {
+    $countryErr ="Country is required";
+  } else {
+    $country = test_input ($_POST["country"]);
+  }
+
+  if (empty($_POST["subject"])) {
+    $subjectErr ="Select your request";
+  }else {
+    $subject = test_input ($_POST["subject"]);
+  }
+
+  if (empty($_POST["gender"])) {
+    $genderErr = "Gender is required";
+  } else {
+    $gender = test_input($_POST["gender"]);
+  }
+
+
+
+
+}
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
 
 <h2 id="contact" class="text-center">Contact form</h2>
 
@@ -228,84 +327,170 @@
 
 
 
-<form method="post" action="/saindex.php" >  
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >  
 
-  <label for="firstname">Firstname: 
-  <input id="firstname" tabindex="1" type="text" name="firstname" value="">
-  <span class="error">* </span>
-  </label> <br><br>
+  <label for="firstname">Firstname:</label> 
+  <input tabindex="1" type="text" id="firstname" name="firstname" value="<?php echo $firstname;?>">
+  <span class="error">* <?php echo $firstnameErr;?></span>
+  <br><br>
 
   <label for="lastname">Lastname:</label> 
-  <input id="lastname" tabindex="2" type="text" name="lastname" value="">
-  <span class="error">* </span>
+  <input tabindex="2" type="text" id="lastname" name="lastname" value="<?php echo $lastname;?>">
+  <span class="error">* <?php echo $lastnameErr;?></span>
   <br><br>
 
   <label for="email">Your email:</label> 
-  <input id="email" tabindex="3" type="text" name="email" value="">
-  <span class="error">* </span>
+  <input tabindex="3" type="text" id="email" name="email" value="<?php echo $email;?>">
+  <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
 
 
   <label for="country">Your Country:</label>
 
-  <select tabindex="4" name="country" id="country">
-    <option value="">Select</option>
-    <option value="pays1">Pays1</option>
-    <option value="pays2">Pays2</option>
-    <option value="pays3">Pays3</option>
+<select tabindex="4" name="country" id="country">
+  <option value="">Select</option>
+  <option value ="belgique" <?php if (isset($country) && $country=="belgique") echo "ok";?>>Belgique</option>
+  <option value ="france" <?php if (isset($country) && $country=="france") echo "ok";?>>France</option>
+  <option value ="suisse" <?php if (isset($country) && $country=="suisse") echo "ok";?>>Suisse</option>
 </select>   
-<span class="error">*</span>
+<span class="error">*<?php echo $countryErr;?></span>
 <br><br>
 
 
-  <label for="subject">Your Subject:</label>
+
+<label for="subject">Your Subject:</label>
 
   <select tabindex="5" name="subject" id="subject">
     <option value="">Select</option>
-    <option value="one">Subject 1</option>
-    <option value="two">Subject 2</option>
-    <option value="three">Subject 3</option>
+    <option value="one"><?php if (isset($subject) && $subject=="one") echo "ok";?>Subject1</option>
+    <option value="two"> <?php if (isset($subject) && $subject=="two") echo "ok";?>Subject 2</option>
+    <option value="three"> <?php if (isset($subject) && $subject=="three") echo "ok";?>Subject 3</option>
     <option value="other">Other</option>
 </select>
-<span class="error">*</span>
+<span class="error">*<?php echo $subjectErr;?></span>
 <br><br>
 
 
   
   <label for="comment">Comment: </label> 
-    <br><textarea id="comment" tabindex="6" name="comment" rows="5" cols="40"></textarea>
-    <span class="error">* </span>
+    <br><textarea id="comment" tabindex="6" name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+    <span class="error">* <?php echo $commentErr;?></span>
 
     <br><br>
 
-  <label tabindex="7" id="gender">Gender: </label>
-  <input id="female" type="radio" name="gender"  value="female">
-  <label for="female">Female</label>
-  <input id="male" type="radio" name="gender"  value="male">
-  <label for="male">Male</label>
-  <input id="other" type="radio" name="gender"  value="other">
-  <label for="other">Other</label>
-  <span class="error">* </span>
-  <br><br>
+    <label tabindex="7" for="gender1">Gender: </label>
+
+<input type="radio" name="gender1" id="gender1" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">
+<label for="gender1"> Female </label>
+<input type="radio" name="gender" id="gender2" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">
+<label for="gender2"> Male </label>
+<input type="radio" name="gender" id="gender3" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other"> 
+<label for="gender3"> Other </label>
+
+<span class="error">* <?php echo $genderErr;?></span>
+<br><br>
 
   <div class="fake"><input type="hidden" name="fake-field"></div>
 
  <input type="submit" id="myModal" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" name="myModal" value="Submit"> 
 
 <!-- <a href="lala" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a> -->
+<?php
 
+if(isset($_POST['myModal'])) {
+
+if ($firstnameErr == '' and $lastnameErr == '' and $emailErr == '' and $countryErr == '' and $subjectErr == '' and $commentErr == '' and $genderErr == '')
+ { ?>
+  
+  <!-- modal -->
+ <div id="myModal" class="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Your informations are corrects. You will receive an email soon</p>
+            </div>
+             
+            <div class="modal-footer">
+      
+                <input type="submit" class="btn btn-primary mb-2" name="submit" value="Submit">  
+            </div>
+        </div>
+    </div>
+</div> 
+      <?php
+    }  
+}
+
+
+?>
 </form>
 
 </div>
 
+<?php
+echo "<h2>Your informations:</h2>";
+echo $firstname;
+echo "<br>";
+echo $lastname;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $country;
+echo "<br>";
+echo $subject;
+echo "<br>";
+echo $comment;
+echo "<br>";
+echo $gender;
+?>
+
+<?php
 
 
-<h2>Your informations:</h2><br><br><br><br><br><br>
+function sanitize_my_email($field) {
+    $field = filter_var($field, FILTER_SANITIZE_EMAIL);
+    if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    } else {
+        return false;
+    }
+  }
+
+if(isset($_POST['submit'])) {
+
+ echo "recoucou";
+    $to = "angeliquecorbisier@gmail.com";
+$subject = "My subject";
+$txt = "Hello world! Your informations: $firstname, $lastname, $country, $subject, $comment";
+$headers = "From: webmaster@example.com" . "\r\n" .
+"CC: somebodyelse@example.com";
+
+mail($to,$subject,$txt,$headers);
+
+echo "mail sent !";
+
+
+//check if the email address is invalid $secure_check
+$secure_check = sanitize_my_email($to_email);
+if ($secure_check == false) {
+    echo "Invalid input";
+} else { //send email 
+  mail($to,$subject,$message,$headers);
+  mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+  echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+  // You can also use header('Location: thank_you.php'); to redirect to another page.
+  }
+
+      
+    }  
 
 
 
-  
-
+?>
 
 <!-- Footer -->
 
