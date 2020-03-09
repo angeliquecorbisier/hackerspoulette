@@ -10,7 +10,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="assets/css/style.css?v=3">
  
 
 

@@ -10,7 +10,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="assets/css/bellota-fontfacekit/web fonts/bellota_italic_macroman/stylesheet.css" type="text/css" charset="utf-8" />
-     <link rel="stylesheet" href="assets/css/style.css?v=3">
+     <link rel="stylesheet" href="assets/css/style.css?v=1">
 
 
 
@@ -37,10 +37,10 @@
               <a class="nav-link" href="#products">Produits</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
+              <a class="nav-link" href="#service">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="#contact">Contact</a>
             </li>
           </ul>
         </div>
@@ -319,7 +319,7 @@ function test_input($data) {
 }
 ?>
 
-<h2 class="text-center">Contact form</h2>
+<h2 id="contact" class="text-center">Contact form</h2>
 
 <div class= "d-flex justify-content-center align-items-center container">
 
@@ -327,7 +327,7 @@ function test_input($data) {
 
 
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >  
 
   <label for="firstname">Firstname:</label> 
   <input type="text" name="firstname" value="<?php echo $firstname;?>">
@@ -386,7 +386,7 @@ function test_input($data) {
 
   <div class="fake"><input name="fake-field"></div>
 
- <input type="submit" id="myModal" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" name="myModal" value="modal"> 
+ <input type="submit" id="myModal" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" name="myModal" value="Submit"> 
 
 <!-- <a href="lala" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a> -->
 
