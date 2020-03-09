@@ -212,6 +212,7 @@
                     <img class="img-fluid" src="https://www.raspberrypi.org/homepage-9df4b/static/018189b96c524db50ebdd0f7210caad0/7fd5d/4b874a4fc4fa904ab20c988f9775889c278dad27_power-supply-1-1393x1080.jpg" alt="Generic placeholder image">
                 </div>
             </div>
+</div>
     </main>
 
  
@@ -330,17 +331,17 @@ function test_input($data) {
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >  
 
   <label for="firstname">Firstname:</label> 
-  <input type="text" name="firstname" value="<?php echo $firstname;?>">
+  <input type="text" id="firstname" name="firstname" value="<?php echo $firstname;?>">
   <span class="error">* <?php echo $firstnameErr;?></span>
   <br><br>
 
   <label for="lastname">Lastname:</label> 
-  <input type="text" name="lastname" value="<?php echo $lastname;?>">
+  <input type="text" id="lastname" name="lastname" value="<?php echo $lastname;?>">
   <span class="error">* <?php echo $lastnameErr;?></span>
   <br><br>
 
   <label for="email">Your email:</label> 
-  <input type="text" name="email" value="<?php echo $email;?>">
+  <input type="text" id="email" name="email" value="<?php echo $email;?>">
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
 
@@ -349,9 +350,9 @@ function test_input($data) {
 
   <select name="country" id="country">
     <option value="">Select</option>
-    <option name ="country" <?php if (isset($country) && $country=="pays1") echo "ok";?>value="pays1">Pays1</option>
-    <option name ="country" <?php if (isset($country) && $country=="pays2") echo "ok";?>value="pays2">Pays2</option>
-    <option name ="country" <?php if (isset($country) && $country=="pays3") echo "ok";?>value="pays3">Pays3</option>
+    <option value ="pays1" <?php if (isset($country) && $country=="pays1") echo "ok";?>>Pays1</option>
+    <option value ="pays2" <?php if (isset($country) && $country=="pays2") echo "ok";?>></option>
+    <option value ="pays3" <?php if (isset($country) && $country=="pays3") echo "ok";?>>Pays3</option>
 </select>   
 <span class="error">*<?php echo $countryErr;?></span>
 <br><br>
@@ -361,9 +362,35 @@ function test_input($data) {
 
   <select name="subject" id="subject">
     <option value="">Select</option>
-    <option name ="subject" <?php if (isset($subject) && $subject=="one") echo "ok";?>value="one">Subject 1</option>
-    <option name ="subject" <?php if (isset($subject) && $subject=="two") echo "ok";?>value="two">Subject 2</option>
-    <option name ="subject" <?php if (isset($subject) && $subject=="three") echo "ok";?>value="three">Subject 3</option>
+    <option value="one">Subject 1<?php if (isset($subject) && $subject=="one") echo "ok";?></option>
+    <option value="two"> <?php if (isset($subject) && $subject=="two") echo "ok";
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ?>Subject 2</option>
+    <option value="three"> <?php if (isset($subject) && $subject=="three") echo "ok";?>Subject 3</option>
     <option value="other">Other</option>
 </select>
 <span class="error">*<?php echo $subjectErr;?></span>
@@ -372,15 +399,20 @@ function test_input($data) {
 
   
   <label for="comment">Comment: </label> 
-    <br><textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+    <br><textarea name="comment" id="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
     <span class="error">* <?php echo $commentErr;?></span>
 
   <br><br>
 
-  <label for="gender">Gender: </label>
-  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
-  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
-  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
+  <label for="gender1">Gender: </label>
+
+  <input type="radio" name="gender" id="gender1" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">
+ <label for="gender1"> Female </label>
+  <input type="radio" name="gender" id="gender2" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">
+  <label for="gender2"> Male </label>
+  <input type="radio" name="gender" id="gender3" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other"> 
+  <label for="gender3"> Other </label>
+ 
   <span class="error">* <?php echo $genderErr;?></span>
   <br><br>
 
