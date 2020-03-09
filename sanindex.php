@@ -351,7 +351,7 @@ function test_input($data) {
   <select name="country" id="country">
     <option value="">Select</option>
     <option value ="pays1" <?php if (isset($country) && $country=="pays1") echo "ok";?>>Pays1</option>
-    <option value ="pays2" <?php if (isset($country) && $country=="pays2") echo "ok";?>></option>
+    <option value ="pays2" <?php if (isset($country) && $country=="pays2") echo "ok";?>>Pays2</option>
     <option value ="pays3" <?php if (isset($country) && $country=="pays3") echo "ok";?>>Pays3</option>
 </select>   
 <span class="error">*<?php echo $countryErr;?></span>
