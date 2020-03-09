@@ -363,33 +363,7 @@ function test_input($data) {
   <select name="subject" id="subject">
     <option value="">Select</option>
     <option value="one">Subject 1<?php if (isset($subject) && $subject=="one") echo "ok";?></option>
-    <option value="two"> <?php if (isset($subject) && $subject=="two") echo "ok";
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ?>Subject 2</option>
+    <option value="two"> <?php if (isset($subject) && $subject=="two") echo "ok";?>Subject 2</option>
     <option value="three"> <?php if (isset($subject) && $subject=="three") echo "ok";?>Subject 3</option>
     <option value="other">Other</option>
 </select>
