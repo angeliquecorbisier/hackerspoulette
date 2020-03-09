@@ -316,24 +316,24 @@ function test_input($data) {
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
 
   <label for="firstname">Firstname:</label> 
-  <input tabindex="f" type="text" name="firstname" value="<?php echo $firstname;?>">
+  <input tabindex="1" type="text" name="firstname" value="<?php echo $firstname;?>">
   <span class="error">* <?php echo $firstnameErr;?></span>
   <br><br>
 
   <label for="lastname">Lastname:</label> 
-  <input tabindex="l" type="text" name="lastname" value="<?php echo $lastname;?>">
+  <input tabindex="2" type="text" name="lastname" value="<?php echo $lastname;?>">
   <span class="error">* <?php echo $lastnameErr;?></span>
   <br><br>
 
   <label for="email">Your email:</label> 
-  <input tabindex="e" type="text" name="email" value="<?php echo $email;?>">
+  <input tabindex="3" type="text" name="email" value="<?php echo $email;?>">
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
 
 
   <label for="country">Your Country:</label>
 
-  <select tabindex="c" name="country" id="country">
+  <select tabindex="4" name="country" id="country">
     <option value="">Select</option>
     <option name ="country" <?php if (isset($country) && $country=="pays1") echo "ok";?>value="pays1">Pays1</option>
     <option name ="country" <?php if (isset($country) && $country=="pays2") echo "ok";?>value="pays2">Pays2</option>
@@ -345,7 +345,7 @@ function test_input($data) {
 
   <label for="subject">Your Subject:</label>
 
-  <select tabindex="s" name="subject" id="subject">
+  <select tabindex="5" name="subject" id="subject">
     <option value="">Select</option>
     <option name ="subject" <?php if (isset($subject) && $subject=="one") echo "ok";?>value="one">Subject 1</option>
     <option name ="subject" <?php if (isset($subject) && $subject=="two") echo "ok";?>value="two">Subject 2</option>
@@ -358,21 +358,21 @@ function test_input($data) {
 
   
   <label for="comment">Comment: </label> 
-    <br><textarea tabindex="m" name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+    <br><textarea tabindex="6" name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
     <span class="error">* <?php echo $commentErr;?></span>
 
   <br><br>
 
-  <label tabindex="g" for="gender">Gender: </label>
+  <label tabindex="7" for="gender">Gender: </label>
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
   <span class="error">* <?php echo $genderErr;?></span>
   <br><br>
 
-  <div class="fake"><input name="fake-field"></div>
+  <div class="fake"><input type="hidden" name="fake-field"></div>
 
-  <input tabindex="a" type="submit" name="submit" value="Submit">  
+  <input tabindex="8" type="submit" name="submit" value="Submit">  
 </form>
 
 <?php
