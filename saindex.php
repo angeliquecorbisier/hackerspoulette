@@ -459,36 +459,31 @@ function sanitize_my_email($field) {
         return false;
     }
   }
+  if(isset($_POST['submit'])) {
 
-if(isset($_POST['submit'])) {
-
- echo "recoucou";
-    $to = "angeliquecorbisier@gmail.com";
-$subject = "My subject";
-$txt = "Hello world! Your informations: $firstname, $lastname, $country, $subject, $comment";
-$headers = "From: webmaster@example.com" . "\r\n" .
-"CC: somebodyelse@example.com";
-
-mail($to,$subject,$txt,$headers);
-
-echo "mail sent !";
-
-
-//check if the email address is invalid $secure_check
-$secure_check = sanitize_my_email($to_email);
-if ($secure_check == false) {
-    echo "Invalid input";
-} else { //send email 
-  mail($to,$subject,$message,$headers);
-  mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
-  echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
-  // You can also use header('Location: thank_you.php'); to redirect to another page.
-  }
-
-      
-    }  
-
-
+    echo "mail prep";
+      $to = "rodriguezgeoffrey.becode@gmail.com"; // this is your Email address
+      $from = $result['email']; // this is the sender's Email address
+      $firstname = $result['firstname'];
+      $lastname = $result['lastname'];
+      $subject1 = "Form submission";
+      $subject2 = "Copy of your form submission";
+      $message = $result['firstname'] . " " . $result['lastname'] . $result['country'] . " wrote the following subject: " . $result['subject'] . "\n\n" . $result['comment'];
+      $message2 = "Here is a copy of your message " . $result['firstname'] . "\n\n" . $result['comment'];
+    
+      $headers = "From:" . $from;
+      $headers2 = "From:" . $to;
+      //check if the email address is invalid $secure_check
+      $secure_check = sanitize_my_email($result['email']);
+      if ($secure_check == false) {
+          echo "Invalid input";
+      } else { //send email 
+        mail($to,$subject1,$message,$headers);
+        mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+        echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+        // You can also use header('Location: thank_you.php'); to redirect to another page.
+        }
+    }
 
 ?>
 
@@ -539,14 +534,7 @@ if ($secure_check == false) {
       <!-- Grid row-->
   
     </div>
-    <!-- Footer Elements -->
-  
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
-  
+
   </footer>
 
   <!-- Footer -->
